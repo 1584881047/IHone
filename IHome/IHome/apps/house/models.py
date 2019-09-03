@@ -6,7 +6,7 @@ from IHome.utils.models import BaseModel
 
 class House(BaseModel):
     '''房屋信息'''
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE, verbose_name='房屋用户')
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE, verbose_name='房屋用户')
     area = models.ForeignKey('address.Area', on_delete=models.SET_NULL, null=True, verbose_name='房屋地区')
     title = models.CharField(max_length=64, null=False, verbose_name='房屋标题')
     price = models.IntegerField(default=0, verbose_name='房屋单价')  # 单价分

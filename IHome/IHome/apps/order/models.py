@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from IHome.utils.models import BaseModel
-from users.models import User
+from user.models import User
 from house.models import House
 
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'verifications'
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -147,3 +148,8 @@ CACHES = {
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session"
+
+
+
+# 用户模型类
+AUTH_USER_MODEL = 'user.User'
