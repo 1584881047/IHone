@@ -28,7 +28,7 @@ SECRET_KEY = '+aosio3b5n7_h@@=d+%x0#6q5-_f%21-&wkv&*=n1crs1dnl%m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'house',
     'order',
     'address',
-    'verifications'
+    'verifications',
 ]
 
 
@@ -51,10 +51,11 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'IHome.MyMiddleWare.middleWare.myMiddleWare'
 ]
 
 ROOT_URLCONF = 'IHome.urls'
@@ -143,7 +144,16 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
+        },
+
+    },
+    "verify_code": {  # 验证码 : 存到 2 号库
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+
     },
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
@@ -153,3 +163,23 @@ SESSION_CACHE_ALIAS = "session"
 
 # 用户模型类
 AUTH_USER_MODEL = 'user.User'
+
+
+# 登录页
+LOGIN_URL = '/static/html/login.html'
+
+
+# 七牛云
+QINIU_ACCESS_KEY = 'QvGMLItBaq9QxTSPqfWeCA0Q_MSyWCcSQF-toWEF'
+QINIU_SECRET_KEY = 'TilNrDFYzBW4CgQsrHT4bH-0eu-SuuxOVSXQdbGM'
+QINIU_BUCKET_NAME = 'meiduo_project'
+QINIU_BUCKET_DOMAIN = 'pwz595tg8.bkt.clouddn.com'
+QINIU_SECURE_URL = False
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuStorage'
+
+
+
+# 指定认证登录
+AUTHENTICATION_BACKENDS = ['user.utils.UsernameMobileAuthBackend']
+
+

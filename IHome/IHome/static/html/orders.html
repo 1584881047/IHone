@@ -52,6 +52,8 @@
                                             待评价
                                         {{else if "COMPLETE" == order.status}}
                                             已完成
+                                        {{else if "WAIT_PAYMENT" == order.status}}
+                                            待支付
                                         {{else if "REJECTED" == order.status}}
                                             已拒单
                                         {{/if}}
